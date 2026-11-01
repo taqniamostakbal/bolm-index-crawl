@@ -1,0 +1,100 @@
+name: Distill — docs JSONL → distilled index + per-shard exports
+
+# Part of the bolm-index-crawl project's own index build: downloads the
+# extracted docs JSONL from the HF Dataset repo, builds the distilled
+# JSONL + per-shard exports (shared contract: tier/shard routing buckets),
+# publishes them back to the HF Dataset repo, and mirrors them as assets
+# on a GitHub Release of THIS repo (taqniamostakbal/bolm-index-crawl).
+# Standard runners only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: "Common Crawl collection to distill (docs/<collection>/ on HF)"
+        required: true
+      release_tag:
+        description: "Release tag for the mirror, e.g. distilled-2026-11"
+        required: true
+      cap_official:
+        description: "Per-host cap — officials"
+        required: false
+        default: "400"
+      cap_press:
+        description: "Per-host cap — press"
+        required: false
+        default: "300"
+      cap_general:
+        description: "Per-host cap — general / Arab-world"
+        required: false
+        default: "60"
+
+permissions:
+  contents: write # needed to create the Release mirror in this repo
+
+jobs:
+  distill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download extracted docs from the HF Dataset
+        run: |
+          python3 - <<'EOF'
+          import os
+          from huggingface_hub import snapshot_download
+          snapshot_download(
+              repo_id=os.environ["HF_DATASET_REPO"], repo_type="dataset",
+              token=os.environ.get("HF_TOKEN") or None,
+              allow_patterns=["docs/${{ inputs.collection }}/*.jsonl"],
+              local_dir="hf")
+          EOF
+          ls hf/docs/${{ inputs.collection }}/ | head
+
+      - name: Build distilled JSONL + per-shard exports
+        run: |
+          python pipeline/distill.py hf/docs/${{ inputs.collection }}/*.jsonl \
+            --out "distilled/distilled-${{ inputs.collection }}.jsonl" \
+            --per-shard \
+            --cap-official "${{ inputs.cap_official }}" \
+            --cap-press "${{ inputs.cap_press }}" \
+            --cap-general "${{ inputs.cap_general }}" \
+            --cap-arab "${{ inputs.cap_general }}"
+          gzip -k distilled/*.jsonl
+          ls -lh distilled/
+
+      - name: Publish distilled exports to the HF Dataset
+        run: |
+          python3 - <<'EOF'
+          import glob, os
+          from huggingface_hub import HfApi
+          api = HfApi(token=os.environ["HF_TOKEN"])
+          repo = os.environ["HF_DATASET_REPO"]
+          for path in sorted(glob.glob("distilled/*.jsonl")):
+              api.upload_file(path_or_fileobj=path,
+                              path_in_repo="distilled/${{ inputs.collection }}/" + os.path.basename(path),
+                              repo_id=repo, repo_type="dataset")
+              print("uploaded", path)
+          EOF
+
+      - name: Mirror to a GitHub Release of this repo
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ inputs.release_tag }}" \
+            --repo "${{ github.repository }}" \
+            --title "Distilled index — ${{ inputs.collection }}" \
+            --notes "Distilled Bolm own-index export for ${{ inputs.collection }}: full distilled JSONL + per-shard exports (gzip). Built by the Distill workflow of taqniamostakbal/bolm-index-crawl." \
+            distilled/*.jsonl.gz

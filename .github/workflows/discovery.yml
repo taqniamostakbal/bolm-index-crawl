@@ -1,0 +1,67 @@
+name: Discovery — Common Crawl URL index → work chunks
+
+# Part of the bolm-index-crawl project's own index build: this workflow
+# discovers Common Crawl captures for *.ma + the distilled host list and
+# publishes 5,000-capture work chunks for the Extract workflow.
+# Method: DuckDB over the CC URL-Index parquet over HTTPS.
+# NO AWS, NO Athena, standard runners only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: "Common Crawl collection (or 'latest')"
+        required: false
+        default: "latest"
+      distilled_only:
+        description: "Only the registry/seed host list (not all *.ma)"
+        type: boolean
+        required: false
+        default: false
+      limit:
+        description: "Cap total captures (0 = no cap; use for smoke runs)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: read
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
+      CC_COLLECTION: ${{ vars.CC_COLLECTION }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run discovery (DuckDB over HTTPS parquet)
+        run: |
+          python pipeline/discover.py \
+            --collection "${{ inputs.collection }}" \
+            --chunk-size 5000 \
+            --out-dir chunks \
+            --limit "${{ inputs.limit }}" \
+            ${{ inputs.distilled_only && '--distilled-only' || '' }}
+
+      - name: Publish chunks as run artifact (hand-off only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: chunks-${{ github.run_id }}
+          path: chunks/
+          retention-days: 7
+
+      - name: Summary
+        run: |
+          cat chunks/manifest.json >> "$GITHUB_STEP_SUMMARY"
+          echo "Chunks were also uploaded to the HF Dataset repo (chunks/<collection>/) when HF_TOKEN is configured." >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,8 @@
+__pycache__/
+chunks/
+docs/
+distilled/
+hf/
+work/
+*.pyc
+# out/ is kept: it holds the distill smoke-test evidence (small).

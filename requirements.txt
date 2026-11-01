@@ -1,0 +1,4 @@
+requests
+trafilatura
+duckdb
+huggingface_hub

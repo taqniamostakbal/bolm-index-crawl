@@ -1,0 +1,91 @@
+name: Extract — WARC range GETs → docs JSONL
+
+# Part of the bolm-index-crawl project's own index build: each matrix job
+# range-GETs the captures of ONE discovery chunk from data.commoncrawl.org,
+# extracts text (trafilatura + canon dedupe + spam filters from the
+# stage-2 pipeline), and uploads its docs JSONL to the HF Dataset repo in
+# the SAME job. GitHub artifacts are used only as an in-run hand-off.
+# Standard runners only; matrix concurrency capped at 20.
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: "Common Crawl collection the chunks belong to"
+        required: true
+      chunks:
+        description: "Comma-separated chunk ids, e.g. 00000,00001,00002"
+        required: true
+      workers:
+        description: "Parallel range-GET workers per job"
+        required: false
+        default: "8"
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.mk.outputs.matrix }}
+    steps:
+      - id: mk
+        run: |
+          python3 - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, os
+          ids = [c.strip() for c in "${{ inputs.chunks }}".split(",") if c.strip()]
+          assert ids, "no chunk ids given"
+          print("matrix=" + json.dumps({"chunk": ids}))
+          EOF
+
+  extract:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix: ${{ fromJSON(needs.prepare.outputs.matrix) }}
+    env:
+      HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      HF_DATASET_REPO: ${{ vars.HF_DATASET_REPO }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download chunk from the HF Dataset
+        run: |
+          python3 - <<'EOF'
+          import os
+          from huggingface_hub import hf_hub_download
+          repo = os.environ["HF_DATASET_REPO"]
+          token = os.environ.get("HF_TOKEN") or None
+          hf_hub_download(
+              repo_id=repo, repo_type="dataset", token=token,
+              filename="chunks/${{ inputs.collection }}/chunk-${{ matrix.chunk }}.jsonl",
+              local_dir=".")
+          EOF
+          mkdir -p work && mv "chunks/${{ inputs.collection }}/chunk-${{ matrix.chunk }}.jsonl" work/
+
+      - name: Extract chunk (range GETs → trafilatura → dedupe/spam)
+        run: |
+          python pipeline/extract.py \
+            --chunk "work/chunk-${{ matrix.chunk }}.jsonl" \
+            --out "docs/chunk-${{ matrix.chunk }}.jsonl" \
+            --workers "${{ inputs.workers }}" \
+            --hf-path "docs/${{ inputs.collection }}/chunk-${{ matrix.chunk }}.jsonl"
+
+      - name: Hand-off artifact (transit only — HF Dataset is the archive)
+        uses: actions/upload-artifact@v4
+        with:
+          name: docs-${{ matrix.chunk }}-${{ github.run_id }}
+          path: docs/chunk-${{ matrix.chunk }}.jsonl
+          retention-days: 7

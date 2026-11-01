@@ -1,0 +1,1007 @@
+[
+ {
+  "d": "maroc.ma",
+  "c": "admin",
+  "k": "المغرب بوابة رسمية maroc royaume portail officiel morocco national portal مؤسسات خدمات الكترونية"
+ },
+ {
+  "d": "service-public.ma",
+  "c": "admin",
+  "k": "خدمات عمومية service public ادارة مساطر اجراءات démarches administratives وثائق ادارية"
+ },
+ {
+  "d": "cg.gov.ma",
+  "c": "admin",
+  "k": "رئيس الحكومة chef du gouvernement primature الحكومة المغربية conseil de gouvernement"
+ },
+ {
+  "d": "interieur.gov.ma",
+  "c": "admin",
+  "k": "وزارة الداخلية ministère intérieur جماعات ترابية عمالات اقاليم wilaya commune"
+ },
+ {
+  "d": "justice.gov.ma",
+  "c": "admin",
+  "k": "وزارة العدل ministère justice قضاء محاكم casier judiciaire سجل عدلي عدالة"
+ },
+ {
+  "d": "sgg.gov.ma",
+  "c": "admin",
+  "k": "امانة عامة حكومة secrétariat général gouvernement جريدة رسمية bulletin officiel قوانين textes juridiques"
+ },
+ {
+  "d": "finances.gov.ma",
+  "c": "admin",
+  "k": "وزارة اقتصاد مالية ministère économie finances ميزانية budget loi de finances depenses publiques"
+ },
+ {
+  "d": "tax.gov.ma",
+  "c": "admin",
+  "k": "ضرائب مديرية عامة impots dgi taxe déclaration fiscale attestation ضريبة دخل tva"
+ },
+ {
+  "d": "douane.gov.ma",
+  "c": "admin",
+  "k": "جمارك douane droits douane import export dédouanement ادارة الجمارك ضرائب غير مباشرة"
+ },
+ {
+  "d": "tgr.gov.ma",
+  "c": "admin",
+  "k": "خزينة عامة trésorerie générale royaume tgr finances publiques recettes etat"
+ },
+ {
+  "d": "dgsn.gov.ma",
+  "c": "admin",
+  "k": "امن وطني police sûreté nationale dgsn بطاقة تعريف شرطة sécurité"
+ },
+ {
+  "d": "passeport.ma",
+  "c": "admin",
+  "k": "جواز سفر passeport biométrique تجديد وثائق rendez-vous passeport marocain"
+ },
+ {
+  "d": "cnie.ma",
+  "c": "admin",
+  "k": "بطاقة تعريف وطنية carte nationale identité cnie تجديد بطاقة عنوان"
+ },
+ {
+  "d": "watiqa.ma",
+  "c": "admin",
+  "k": "وثيقة watiqa عقد ازدياد acte naissance نسخة كاملة état civil وثائق"
+ },
+ {
+  "d": "idarati.ma",
+  "c": "admin",
+  "k": "ادارتي idarati مساطر ادارية démarches procédures administratives معلومات ادارة"
+ },
+ {
+  "d": "chikaya.ma",
+  "c": "admin",
+  "k": "شكاية chikaya réclamation بوابة وطنية شكايات plainte administration تظلم"
+ },
+ {
+  "d": "ancfcc.gov.ma",
+  "c": "admin",
+  "k": "محافظة عقارية conservation foncière titre foncier ancfcc شهادة ملكية تحفيظ عقاري"
+ },
+ {
+  "d": "mahakim.ma",
+  "c": "admin",
+  "k": "محاكم tribunaux mahakim تتبع ملفات قضايا audiences جلسات قضاء"
+ },
+ {
+  "d": "mmsp.gov.ma",
+  "c": "admin",
+  "k": "تحول رقمي اصلاح ادارة transformation numérique réforme administration fonction publique وظيفة عمومية"
+ },
+ {
+  "d": "dgssi.gov.ma",
+  "c": "admin",
+  "k": "امن نظم معلومات dgssi sécurité systèmes information défense nationale cyber"
+ },
+ {
+  "d": "marchespublics.gov.ma",
+  "c": "admin",
+  "k": "صفقات عمومية marchés publics appels offres soumission مناقصات طلب عروض"
+ },
+ {
+  "d": "habitat.gov.ma",
+  "c": "admin",
+  "k": "سكن تعمير habitat urbanisme logement politique ville املاك"
+ },
+ {
+  "d": "territoires.gov.ma",
+  "c": "admin",
+  "k": "تهيئة تراب وطني aménagement territoire urbanisme habitat politique ville سكن"
+ },
+ {
+  "d": "equipement.gov.ma",
+  "c": "admin",
+  "k": "تجهيز ماء équipement eau infrastructures routes ports barrages طرق موانئ سدود"
+ },
+ {
+  "d": "agriculture.gov.ma",
+  "c": "admin",
+  "k": "فلاحة agriculture pêche maritime développement rural مياه غابات elevage agricole"
+ },
+ {
+  "d": "environnement.gov.ma",
+  "c": "general",
+  "k": "بيئة environnement développement durable مناخ climat pollution نفايات"
+ },
+ {
+  "d": "diplomatie.ma",
+  "c": "admin",
+  "k": "شؤون خارجية affaires étrangères diplomatie consulats ambassades تعاون دولي مغاربة عالم"
+ },
+ {
+  "d": "mre.gov.ma",
+  "c": "admin",
+  "k": "مغاربة مقيمون خارج marocains résidant étranger mre diaspora جالية مغربية"
+ },
+ {
+  "d": "parlement.ma",
+  "c": "general",
+  "k": "برلمان parlement chambre représentants conseillers قوانين lois députés مستشارون"
+ },
+ {
+  "d": "chambredesrepresentants.ma",
+  "c": "general",
+  "k": "مجلس نواب chambre représentants députés parlement تشريع lois"
+ },
+ {
+  "d": "chambredesconseillers.ma",
+  "c": "general",
+  "k": "مجلس مستشارين chambre conseillers parlement تشريع lois"
+ },
+ {
+  "d": "courdescomptes.ma",
+  "c": "admin",
+  "k": "مجلس اعلى حسابات cour des comptes audit finances publiques رقابة مالية"
+ },
+ {
+  "d": "cour-constitutionnelle.ma",
+  "c": "general",
+  "k": "محكمة دستورية cour constitutionnelle دستور constitution رقابة دستورية قوانين"
+ },
+ {
+  "d": "cndh.org.ma",
+  "c": "general",
+  "k": "حقوق انسان conseil national droits homme cndh حماية حقوق حريات"
+ },
+ {
+  "d": "cndp.ma",
+  "c": "admin",
+  "k": "حماية معطيات شخصية protection données personnelles cndp vie privée خصوصية"
+ },
+ {
+  "d": "inpplc.ma",
+  "c": "admin",
+  "k": "نزاهة وقاية رشوة probité prévention corruption inpplc فساد transparence"
+ },
+ {
+  "d": "data.gov.ma",
+  "c": "general",
+  "k": "بيانات مفتوحة open data données ouvertes data portail احصائيات publiques"
+ },
+ {
+  "d": "snrt.ma",
+  "c": "general",
+  "k": "شركة وطنية اذاعة تلفزة snrt الاولى al aoula تلفزيون عمومي radio nationale"
+ },
+ {
+  "d": "2m.ma",
+  "c": "general",
+  "k": "قناة ثانية 2m télévision publique اخبار برامج تلفزة مغربية"
+ },
+ {
+  "d": "map.ma",
+  "c": "general",
+  "k": "وكالة مغرب عربي انباء maghreb arabe presse map اخبار agence presse رسمية"
+ },
+ {
+  "d": "haca.ma",
+  "c": "general",
+  "k": "هيئة عليا اتصال سمعي بصري haute autorité communication audiovisuelle haca اذاعة تلفزة"
+ },
+ {
+  "d": "oncf.ma",
+  "c": "transport",
+  "k": "قطار train oncf سكك حديدية chemins de fer gares voyages horaires قطارات"
+ },
+ {
+  "d": "oncf-voyages.ma",
+  "c": "transport",
+  "k": "حجز قطار billets train oncf voyages horaires tarifs al boraq البراق تذاكر سفر"
+ },
+ {
+  "d": "onda.ma",
+  "c": "transport",
+  "k": "مطارات aéroports onda vols aéroport casablanca rabat marrakech vols départs arrivées"
+ },
+ {
+  "d": "royalairmaroc.com",
+  "c": "transport",
+  "k": "خطوط ملكية مغربية royal air maroc vols billets avion ram رحلات طيران حجز"
+ },
+ {
+  "d": "ctm.ma",
+  "c": "transport",
+  "k": "حافلات ctm autocar billets bus horaires voyages نقل بين مدن محطة"
+ },
+ {
+  "d": "supratours.ma",
+  "c": "transport",
+  "k": "سوبراتور supratours autocar oncf billets bus voyages نقل مسافرين"
+ },
+ {
+  "d": "alsa.ma",
+  "c": "transport",
+  "k": "حافلات مدينة alsa bus urbain casablanca marrakech agadir tanger نقل حضري تذاكر"
+ },
+ {
+  "d": "aml.ma",
+  "c": "transport",
+  "k": "عبارة ferry aml traversée tanger algeciras طنجة الخزيرات نقل بحري مسافرين"
+ },
+ {
+  "d": "casatramway.ma",
+  "c": "transport",
+  "k": "طرامواي ترام d tramway casablanca casabusway casa tram horaires lignes تذاكر نقل"
+ },
+ {
+  "d": "tram-way.ma",
+  "c": "transport",
+  "k": "طرامواي رباط سلا tramway rabat salé horaires lignes tickets transport urbain"
+ },
+ {
+  "d": "casatransport.ma",
+  "c": "transport",
+  "k": "نقل دار بيضاء casa transport mobilité busway tramway تنقل حضري casablanca"
+ },
+ {
+  "d": "narsa.gov.ma",
+  "c": "transport",
+  "k": "سلامة طرقية sécurité routière narsa permis conduire رخصة سياقة حوادث سير مخالفات"
+ },
+ {
+  "d": "adm.co.ma",
+  "c": "transport",
+  "k": "طرق سيارة autoroutes maroc adm péage جواز autoroute تذاكر طرق سيارة مغرب"
+ },
+ {
+  "d": "tmsa.ma",
+  "c": "transport",
+  "k": "طنجة متوسط tanger med port tmsa ميناء نقل بحري logistique portuaire"
+ },
+ {
+  "d": "anp.gov.ma",
+  "c": "transport",
+  "k": "موانئ ports agence nationale ports anp ميناء الدار البيضاء اكادير طنجة نقل بحري"
+ },
+ {
+  "d": "dgac.gov.ma",
+  "c": "transport",
+  "k": "طيران مدني aviation civile dgac navigation aérienne مطارات سلامة جوية"
+ },
+ {
+  "d": "smit.gov.ma",
+  "c": "general",
+  "k": "سياحة smit ingénierie touristique investissement tourisme استثمار سياحي فنادق"
+ },
+ {
+  "d": "men.gov.ma",
+  "c": "education",
+  "k": "وزارة تربية وطنية éducation nationale men تعليم مدارس امتحانات بكالوريا scolarité"
+ },
+ {
+  "d": "mesrs.gov.ma",
+  "c": "education",
+  "k": "تعليم عالي enseignement supérieur recherche scientifique جامعات étudiants universités بحث علمي"
+ },
+ {
+  "d": "massarservice.men.gov.ma",
+  "c": "education",
+  "k": "مسار massar نقط résultats notes élèves تلاميذ scolarité مراقبة مستمرة"
+ },
+ {
+  "d": "moutamadris.men.gov.ma",
+  "c": "education",
+  "k": "متمدرس moutamadris مسار نقط تلميذ notes résultats espace élève"
+ },
+ {
+  "d": "massar.men.gov.ma",
+  "c": "education",
+  "k": "مسار massar مدرس enseignants professeurs نقط تلاميذ ادارة مدرسية"
+ },
+ {
+  "d": "bac.men.gov.ma",
+  "c": "education",
+  "k": "بكالوريا baccalauréat vérification نتائج امتحان وطني attestation réussite"
+ },
+ {
+  "d": "taalim.ma",
+  "c": "education",
+  "k": "تعليم taalim بريد تلميذ massar نتائج بكالوريا compte élève messagerie"
+ },
+ {
+  "d": "cursussup.gov.ma",
+  "c": "education",
+  "k": "توجيه cursussup orientation post-bac تعليم عالي inscriptions جامعات مدارس عليا"
+ },
+ {
+  "d": "ofppt.ma",
+  "c": "education",
+  "k": "تكوين مهني formation professionnelle ofppt inscription instituts spécialisés تقني متخصص ista"
+ },
+ {
+  "d": "myway.ac.ma",
+  "c": "education",
+  "k": "تكوين مهني ofppt myway orientation inscription formation professionnelle métiers"
+ },
+ {
+  "d": "csefrs.ma",
+  "c": "education",
+  "k": "مجلس اعلى تربية تكوين conseil supérieur éducation formation recherche scientifique تعليم"
+ },
+ {
+  "d": "inee.ma",
+  "c": "education",
+  "k": "تقييم تعليم instance évaluation éducation inee جودة منظومة تربوية"
+ },
+ {
+  "d": "cnrst.ma",
+  "c": "education",
+  "k": "بحث علمي centre national recherche scientifique technique cnrst منح بحوث science"
+ },
+ {
+  "d": "academiesciences.ma",
+  "c": "education",
+  "k": "اكاديمية حسن ثاني علوم تقنيات académie hassan ii sciences techniques بحث علمي"
+ },
+ {
+  "d": "um5.ac.ma",
+  "c": "education",
+  "k": "جامعة محمد خامس رباط université mohammed v rabat um5 كليات مدارس عليا étudiants"
+ },
+ {
+  "d": "univh2c.ma",
+  "c": "education",
+  "k": "جامعة حسن ثاني دار بيضاء université hassan ii casablanca uh2c كليات étudiants"
+ },
+ {
+  "d": "uca.ma",
+  "c": "education",
+  "k": "جامعة قاضي عياض مراكش université cadi ayyad marrakech uca كليات طلبة"
+ },
+ {
+  "d": "usmba.ac.ma",
+  "c": "education",
+  "k": "جامعة سيدي محمد بن عبد الله فاس université sidi mohamed ben abdellah fès usmba طلبة"
+ },
+ {
+  "d": "uiz.ac.ma",
+  "c": "education",
+  "k": "جامعة ابن زهر اكادير université ibn zohr agadir uiz كليات طلبة سوس"
+ },
+ {
+  "d": "ump.ma",
+  "c": "education",
+  "k": "جامعة محمد اول وجدة université mohammed premier oujda ump كليات طلبة شرق"
+ },
+ {
+  "d": "uit.ac.ma",
+  "c": "education",
+  "k": "جامعة ابن طفيل قنيطرة université ibn tofail kénitra uit كليات طلبة"
+ },
+ {
+  "d": "umi.ac.ma",
+  "c": "education",
+  "k": "جامعة مولاي اسماعيل مكناس université moulay ismail meknès umi كليات طلبة"
+ },
+ {
+  "d": "uh1.ac.ma",
+  "c": "education",
+  "k": "جامعة حسن اول سطات université hassan premier settat uh1 كليات طلبة"
+ },
+ {
+  "d": "usms.ac.ma",
+  "c": "education",
+  "k": "جامعة سلطان مولاي سليمان بني ملال université sultan moulay slimane béni mellal usms طلبة"
+ },
+ {
+  "d": "ucd.ac.ma",
+  "c": "education",
+  "k": "جامعة شعيب دكالي جديدة université chouaib doukkali el jadida ucd كليات طلبة"
+ },
+ {
+  "d": "uae.ac.ma",
+  "c": "education",
+  "k": "جامعة عبد مالك سعدي تطوان université abdelmalek essaadi tétouan uae كليات طلبة شمال"
+ },
+ {
+  "d": "fs.uae.ac.ma",
+  "c": "education",
+  "k": "كلية علوم تطوان faculté sciences tétouan uae طلبة ماستر اجازة"
+ },
+ {
+  "d": "inpt.ac.ma",
+  "c": "education",
+  "k": "معهد وطني بريد مواصلات institut national postes télécommunications inpt مهندسون télécom rabat"
+ },
+ {
+  "d": "insea.ac.ma",
+  "c": "education",
+  "k": "معهد وطني احصاء اقتصاد تطبيقي institut statistique économie appliquée insea مهندسون بيانات"
+ },
+ {
+  "d": "groupeiscae.ma",
+  "c": "education",
+  "k": "معهد عالي تجارة ادارة مقاولات iscae commerce administration entreprises ادارة اعمال management casablanca"
+ },
+ {
+  "d": "emi.ac.ma",
+  "c": "education",
+  "k": "مدرسة محمدية مهندسين école mohammadia ingénieurs emi génie civil informatique رباط"
+ },
+ {
+  "d": "ehtp.ac.ma",
+  "c": "education",
+  "k": "مدرسة حسنية اشغال عمومية école hassania travaux publics ehtp مهندسون génie civil دار بيضاء"
+ },
+ {
+  "d": "enim.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية عليا معادن رباط école mines rabat enim ensmr مهندسون جيولوجيا طاقة"
+ },
+ {
+  "d": "ensem.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية عليا كهرباء ميكانيك école électricité mécanique ensem مهندسون دار بيضاء"
+ },
+ {
+  "d": "ensias.um5.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية عليا اعلاميات تحليل نظم ensias informatique analyse systèmes مهندسون رباط"
+ },
+ {
+  "d": "ens.um5.ac.ma",
+  "c": "education",
+  "k": "مدرسة عليا اساتذة école normale supérieure ens rabat اساتذة تعليم تكوين"
+ },
+ {
+  "d": "fse.um5.ac.ma",
+  "c": "education",
+  "k": "كلية علوم تربية faculté sciences éducation fse rabat طلبة ماستر تربية"
+ },
+ {
+  "d": "esi.ac.ma",
+  "c": "education",
+  "k": "مدرسة علوم اعلام école sciences information esi رباط مكتبات وثائق communication"
+ },
+ {
+  "d": "esith.ac.ma",
+  "c": "education",
+  "k": "مدرسة عليا صناعات نسيج ملابس école industries textile habillement esith مهندسون دار بيضاء"
+ },
+ {
+  "d": "aiac.ma",
+  "c": "education",
+  "k": "اكاديمية دولية محمد سادس طيران مدني académie aviation civile aiac pilotes مطارات دار بيضاء"
+ },
+ {
+  "d": "isic.ac.ma",
+  "c": "education",
+  "k": "معهد عالي اعلام اتصال institut information communication isic صحافة رباط journalisme"
+ },
+ {
+  "d": "iav.ac.ma",
+  "c": "education",
+  "k": "معهد حسن ثاني زراعة بيطرة institut agronomique vétérinaire iav hassan ii مهندسون زراعيون رباط"
+ },
+ {
+  "d": "fstm.ac.ma",
+  "c": "education",
+  "k": "كلية علوم تقنيات محمدية faculté sciences techniques mohammedia fstm طلبة مهندسون"
+ },
+ {
+  "d": "fmpt.ac.ma",
+  "c": "education",
+  "k": "كلية طب صيدلة طنجة faculté médecine pharmacie tanger طلبة طب اسنان"
+ },
+ {
+  "d": "fmpc.ac.ma",
+  "c": "education",
+  "k": "كلية طب صيدلة دار بيضاء faculté médecine pharmacie casablanca fmpc طب اسنان طلبة"
+ },
+ {
+  "d": "fmpr.ac.ma",
+  "c": "education",
+  "k": "كلية طب صيدلة رباط faculté médecine pharmacie rabat fmpr طب صيدلة طلبة"
+ },
+ {
+  "d": "ensa-marrakech.uca.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية مراكش école sciences appliquées ensa marrakech مهندسون uca"
+ },
+ {
+  "d": "ensaf.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية فاس école sciences appliquées ensa fès مهندسون usmba"
+ },
+ {
+  "d": "ensah.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية حسيمة école sciences appliquées ensa al hoceima مهندسون"
+ },
+ {
+  "d": "ensat.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية طنجة école sciences appliquées ensa tanger مهندسون uae"
+ },
+ {
+  "d": "ensa-agadir.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية اكادير école sciences appliquées ensa agadir مهندسون uiz"
+ },
+ {
+  "d": "ensate.uae.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية تطوان école sciences appliquées ensa tétouan مهندسون uae"
+ },
+ {
+  "d": "encg-agadir.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية تجارة تسيير اكادير école commerce gestion encg agadir طلبة uiz"
+ },
+ {
+  "d": "encgt.uae.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية تجارة تسيير طنجة école commerce gestion encg tanger طلبة uae"
+ },
+ {
+  "d": "encg.uit.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية تجارة تسيير قنيطرة école commerce gestion encg kénitra طلبة uit"
+ },
+ {
+  "d": "encg-settat.ma",
+  "c": "education",
+  "k": "مدرسة وطنية تجارة تسيير سطات école commerce gestion encg settat طلبة uh1"
+ },
+ {
+  "d": "ispits.ma",
+  "c": "health",
+  "k": "معهد عالي مهن تمريض تقنيات صحة institut professions infirmières ispits laayoune تكوين ممرضون"
+ },
+ {
+  "d": "sante.gov.ma",
+  "c": "health",
+  "k": "وزارة صحة حماية اجتماعية ministère santé protection sociale مستشفيات vaccination تلقيح برامج صحية"
+ },
+ {
+  "d": "mawiidi.ma",
+  "c": "health",
+  "k": "موعدي mawiidi موعد مستشفى rendez-vous hôpital public consultation طبيب حجز موعد"
+ },
+ {
+  "d": "anam.ma",
+  "c": "health",
+  "k": "وكالة وطنية تامين صحي agence assurance maladie anam amo تغطية صحية تامين اجباري مرض"
+ },
+ {
+  "d": "amo.ma",
+  "c": "health",
+  "k": "تامبن اجباري مرض assurance maladie obligatoire amo تغطية صحية cnss cnops معلومات"
+ },
+ {
+  "d": "ammps.gov.ma",
+  "c": "health",
+  "k": "وكالة مغربية ادوية منتجات صحية agence médicament produits santé ammps ادوية تراخيص"
+ },
+ {
+  "d": "onssa.gov.ma",
+  "c": "health",
+  "k": "سلامة صحية منتجات غذائية office sécurité sanitaire aliments onssa مراقبة غذاء صحة حيوان نبات"
+ },
+ {
+  "d": "chuibnrochd.ma",
+  "c": "health",
+  "k": "مركز استشفائي جامعي ابن رشد دار بيضاء chu ibn rochd casablanca مستشفى urgences rendez-vous"
+ },
+ {
+  "d": "chumarrakech.ma",
+  "c": "health",
+  "k": "مركز استشفائي جامعي محمد سادس مراكش chu mohammed vi marrakech مستشفى مواعيد urgences"
+ },
+ {
+  "d": "chu-fes.ma",
+  "c": "health",
+  "k": "مركز استشفائي جامعي حسن ثاني فاس chu hassan ii fès مستشفى مواعيد consultations"
+ },
+ {
+  "d": "gst-rsk.ma",
+  "c": "health",
+  "k": "مجموعة صحية ترابية رباط سلا قنيطرة groupement sanitaire territorial rabat salé kénitra مستشفيات صحة"
+ },
+ {
+  "d": "chuoujda.ma",
+  "c": "health",
+  "k": "مركز استشفائي جامعي محمد سادس وجدة chu mohammed vi oujda مستشفى مواعيد صحة"
+ },
+ {
+  "d": "chusm.ma",
+  "c": "health",
+  "k": "مركز استشفائي جامعي سوس ماسة اكادير chu souss massa agadir مستشفى مواعيد صحة"
+ },
+ {
+  "d": "cnss.ma",
+  "c": "social",
+  "k": "صندوق وطني ضمان اجتماعي caisse sécurité sociale cnss تعويضات عائلية amo تقاعد affiliés prestations"
+ },
+ {
+  "d": "damancom.ma",
+  "c": "social",
+  "k": "ضمان كوم damancom cnss مقاولات déclaration salaires entreprises تصريح اجور مشغلون"
+ },
+ {
+  "d": "taawidaty.cnss.ma",
+  "c": "social",
+  "k": "تعويضاتي taawidaty cnss تعويض فقدان شغل indemnité perte emploi prestations demandes"
+ },
+ {
+  "d": "cnops.org.ma",
+  "c": "social",
+  "k": "صندوق وطني منظمات احتياط اجتماعي cnops amo موظفون تغطية صحية prestations fonctionnaires"
+ },
+ {
+  "d": "cmr.gov.ma",
+  "c": "social",
+  "k": "صندوق مغربي تقاعد caisse marocaine retraites cmr معاشات pension fonctionnaires متقاعدون"
+ },
+ {
+  "d": "cimr.ma",
+  "c": "social",
+  "k": "صندوق مهني مغربي تقاعد caisse interprofessionnelle retraite cimr معاش تكميلي salariés entreprises"
+ },
+ {
+  "d": "rsu.ma",
+  "c": "social",
+  "k": "سجل اجتماعي موحد registre social unifié rsu دعم اجتماعي amo تضامن استهداف اسر aide sociale"
+ },
+ {
+  "d": "entraide.ma",
+  "c": "social",
+  "k": "تعاون وطني entraide nationale مساعدة اجتماعية مراكز اجتماعية تكوين اسر هشاشة"
+ },
+ {
+  "d": "social.gov.ma",
+  "c": "social",
+  "k": "وزارة تضامن ادماج اجتماعي اسرة ministère solidarité inclusion sociale famille تنمية اجتماعية"
+ },
+ {
+  "d": "emploi-public.ma",
+  "c": "jobs",
+  "k": "تشغيل عمومي emploi public concours مباريات توظيف وظائف عمومية recrutement fonction publique"
+ },
+ {
+  "d": "anapec.org",
+  "c": "jobs",
+  "k": "وكالة وطنية انعاش تشغيل كفاءات anapec emploi offres travail inscription بحث شغل offres emploi"
+ },
+ {
+  "d": "concours.dgsn.gov.ma",
+  "c": "jobs",
+  "k": "مباريات امن وطني concours police dgsn recrutement شرطة توظيف حراس امن مفتشون"
+ },
+ {
+  "d": "skills.ma",
+  "c": "jobs",
+  "k": "مهارات anapec skills تكوين بحث شغل emploi formation insertion professionnelle كفاءات"
+ },
+ {
+  "d": "bkam.ma",
+  "c": "prices",
+  "k": "بنك المغرب bank al-maghrib banque centrale taux change درهم devises سعر صرف عملات politique monétaire"
+ },
+ {
+  "d": "hcp.ma",
+  "c": "prices",
+  "k": "مندوبية سامية تخطيط haut commissariat plan hcp اسعار indices prix احصاء inflation recensement"
+ },
+ {
+  "d": "oc.gov.ma",
+  "c": "prices",
+  "k": "مكتب صرف office des changes oc devises change عملات تحويلات voyage allocation"
+ },
+ {
+  "d": "habous.gov.ma",
+  "c": "prayer",
+  "k": "اوقاف شؤون اسلامية habous affaires islamiques مواقيت صلاة horaires prière مساجد mosquées اسلام"
+ },
+ {
+  "d": "ompic.org.ma",
+  "c": "business",
+  "k": "مكتب مغربي ملكية صناعية تجارية ompic marques brevets création entreprise سجل تجاري علامات"
+ },
+ {
+  "d": "mcinet.gov.ma",
+  "c": "business",
+  "k": "وزارة صناعة تجارة ministère industrie commerce investissement استثمار مقاولات zones industrielles"
+ },
+ {
+  "d": "acaps.ma",
+  "c": "business",
+  "k": "هيئة مراقبة تامينات احتياط اجتماعي autorité contrôle assurances prévoyance acaps تامين assurance retraites"
+ },
+ {
+  "d": "conseil-concurrence.ma",
+  "c": "business",
+  "k": "مجلس منافسة conseil concurrence prix pratiques anticoncurrentielles سوق حماية مستهلك"
+ },
+ {
+  "d": "cgem.ma",
+  "c": "business",
+  "k": "اتحاد عام مقاولات مغرب confédération entreprises cgem patronat مقاولات استثمار تشغيل"
+ },
+ {
+  "d": "cdg.ma",
+  "c": "business",
+  "k": "صندوق ايداع تدبير caisse dépôt gestion cdg استثمار ادخار retraites financement projets"
+ },
+ {
+  "d": "portnet.ma",
+  "c": "business",
+  "k": "بورتنت portnet guichet unique commerce extérieur استيراد تصدير import export douane ports"
+ },
+ {
+  "d": "casainvest.ma",
+  "c": "business",
+  "k": "مركز جهوي استثمار centre régional investissement casablanca settat cri création entreprise استثمار"
+ },
+ {
+  "d": "amdie.gov.ma",
+  "c": "business",
+  "k": "وكالة مغربية تنمية استثمارات صادرات agence investissements exportations amdie invest morocco تصدير"
+ },
+ {
+  "d": "ada.gov.ma",
+  "c": "business",
+  "k": "وكالة تنمية فلاحية agence développement agricole ada استثمار فلاحي plan maroc vert فلاحة"
+ },
+ {
+  "d": "notaires.org.ma",
+  "c": "business",
+  "k": "موثقون notaires ordre national عقود توثيق actes notariés عقارات زواج ارث"
+ },
+ {
+  "d": "oec.ma",
+  "c": "business",
+  "k": "خبراء محاسبون ordre experts comptables oec محاسبة audit entreprises comptabilité"
+ },
+ {
+  "d": "visitmorocco.com",
+  "c": "general",
+  "k": "سياحة مغرب visit morocco tourisme onmt voyage destinations مراكش اكادير فنادق travel morocco"
+ },
+ {
+  "d": "casablanca.ma",
+  "c": "general",
+  "k": "جماعة دار بيضاء commune casablanca ville services municipaux بلدية حالة مدنية رخص"
+ },
+ {
+  "d": "agadir.ma",
+  "c": "general",
+  "k": "جماعة اكادير commune agadir ville services municipaux بلدية سوس حالة مدنية"
+ },
+ {
+  "d": "tanger.ma",
+  "c": "general",
+  "k": "جماعة طنجة commune tanger ville بوابة الكترونية بلدية خدمات جماعية"
+ },
+ {
+  "d": "tetouan.ma",
+  "c": "general",
+  "k": "جماعة تطوان commune tétouan ville بوابة الكترونية بلدية خدمات جماعية"
+ },
+ {
+  "d": "laayoune.ma",
+  "c": "general",
+  "k": "جماعة عيون commune laayoune ville بوابة الكترونية بلدية خدمات جماعية صحراء"
+ },
+ {
+  "d": "ville-marrakech.ma",
+  "c": "general",
+  "k": "مدينة مراكش ville marrakech commune جماعة خدمات بلدية سياحة"
+ },
+ {
+  "d": "fes.ma",
+  "c": "general",
+  "k": "جماعة فاس commune fès ville بلدية خدمات جماعية بوابة"
+ },
+ {
+  "d": "lydec.ma",
+  "c": "general",
+  "k": "ليدك lydec ماء كهرباء دار بيضاء eau électricité casablanca factures agences خدمات"
+ },
+ {
+  "d": "redal.ma",
+  "c": "general",
+  "k": "ريضال redal ماء كهرباء رباط سلا eau électricité assainissement rabat salé factures"
+ },
+ {
+  "d": "amendis.ma",
+  "c": "general",
+  "k": "امانديس amendis ماء كهرباء طنجة تطوان eau électricité tanger tétouan factures خدمات"
+ },
+ {
+  "d": "masen.ma",
+  "c": "general",
+  "k": "وكالة مغربية طاقة مستدامة agence énergie solaire masen طاقة شمسية renouvelable نور ورزازات"
+ },
+ {
+  "d": "alomrane.gov.ma",
+  "c": "general",
+  "k": "عمران al omrane سكن logement habitat social برامج سكنية عقار مدن جديدة"
+ },
+ {
+  "d": "poste.ma",
+  "c": "general",
+  "k": "بريد مغرب poste maroc barid colis رسائل طرود amana خدمات بريدية تتبع بعائث"
+ },
+ {
+  "d": "onee.ma",
+  "c": "general",
+  "k": "مكتب وطني كهرباء ماء صالح شرب office électricité eau potable onee فواتير branchement عداد"
+ },
+ {
+  "d": "onp.ma",
+  "c": "general",
+  "k": "مكتب وطني صيد office national pêches onp موانئ صيد بحري poissons halles"
+ },
+ {
+  "d": "anrt.ma",
+  "c": "general",
+  "k": "وكالة وطنية تقنين مواصلات agence réglementation télécommunications anrt اتصالات انترنت domaines .ma"
+ },
+ {
+  "d": "artisanat.gov.ma",
+  "c": "general",
+  "k": "سياحة صناعة تقليدية اقتصاد اجتماعي تضامني tourisme artisanat économie sociale mtaess حرفيين تعاونيات"
+ },
+ {
+  "d": "mjcc.gov.ma",
+  "c": "general",
+  "k": "شباب ثقافة تواصل jeunesse culture communication ministère مهرجانات مكتبات مسرح"
+ },
+ {
+  "d": "onhym.gov.ma",
+  "c": "general",
+  "k": "مكتب وطني هيدروكاربورات مناجم office hydrocarbures mines onhym طاقة تنقيب غاز معادن"
+ },
+ {
+  "d": "onmt.ma",
+  "c": "general",
+  "k": "مكتب وطني مغربي سياحة office national tourisme onmt ترويج سياحي destinations maroc"
+ },
+ {
+  "d": "ensa.uit.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية علوم تطبيقية قنيطرة école sciences appliquées ensa kénitra مهندسون uit"
+ },
+ {
+  "d": "ensam-casa.ma",
+  "c": "education",
+  "k": "مدرسة وطنية عليا فنون مهن دار بيضاء école arts métiers ensam casablanca مهندسون uh2c"
+ },
+ {
+  "d": "fmpa.uiz.ac.ma",
+  "c": "education",
+  "k": "كلية طب صيدلة اكادير faculté médecine pharmacie agadir طلبة طب uiz"
+ },
+ {
+  "d": "fst-usmba.ac.ma",
+  "c": "education",
+  "k": "كلية علوم تقنيات فاس faculté sciences techniques fès fst طلبة مهندسون usmba"
+ },
+ {
+  "d": "fstbm.ac.ma",
+  "c": "education",
+  "k": "كلية علوم تقنيات بني ملال faculté sciences techniques béni mellal fst طلبة usms"
+ },
+ {
+  "d": "est.um5.ac.ma",
+  "c": "education",
+  "k": "مدرسة عليا تكنولوجيا سلا école supérieure technologie salé est طلبة تقنيون um5"
+ },
+ {
+  "d": "estk.uit.ac.ma",
+  "c": "education",
+  "k": "مدرسة عليا تكنولوجيا قنيطرة école supérieure technologie kénitra est طلبة uit"
+ },
+ {
+  "d": "amci.ma",
+  "c": "education",
+  "k": "وكالة مغربية تعاون دولي agence coopération internationale amci étudiants étrangers bourses منح"
+ },
+ {
+  "d": "encgd.uiz.ac.ma",
+  "c": "education",
+  "k": "مدرسة وطنية تجارة تسيير داخلة école commerce gestion encg dakhla طلبة uiz"
+ },
+ {
+  "d": "fmd.um5.ac.ma",
+  "c": "education",
+  "k": "كلية طب اسنان رباط faculté médecine dentaire rabat fmd طلبة اسنان um5"
+ },
+ {
+  "d": "fsjes-souissi.um5.ac.ma",
+  "c": "education",
+  "k": "كلية علوم قانونية اقتصادية اجتماعية سويسي faculté droit économie fsjes souissi rabat طلبة um5"
+ },
+ {
+  "d": "fsjes-agdal.um5.ac.ma",
+  "c": "education",
+  "k": "كلية علوم قانونية اقتصادية اجتماعية اكدال faculté droit économie fsjes agdal rabat طلبة um5"
+ },
+ {
+  "d": "sonarges.ma",
+  "c": "general",
+  "k": "شركة وطنية انجاز تسيير ملاعب société nationale stades sonarges ملاعب رياضية كرة قدم"
+ },
+ {
+  "d": "augon.ma",
+  "c": "general",
+  "k": "وكالة حضرية كلميم واد نون agence urbaine guelmim oued noun تعمير urbanisme رخص بناء"
+ },
+ {
+  "d": "fnm.ma",
+  "c": "general",
+  "k": "مؤسسة وطنية متاحف fondation nationale musées fnm متاحف ثقافة تراث expositions"
+ },
+ {
+  "d": "inau.ac.ma",
+  "c": "education",
+  "k": "معهد وطني تهيئة تعمير institut aménagement urbanisme inau رباط تكوين urbanistes"
+ },
+ {
+  "d": "insap.ac.ma",
+  "c": "education",
+  "k": "معهد وطني علوم اثار تراث institut sciences archéologie patrimoine insap رباط اثار"
+ },
+ {
+  "d": "isadac.ma",
+  "c": "education",
+  "k": "معهد عالي فن درامي تنشيط ثقافي institut art dramatique isadac مسرح سينما رباط"
+ },
+ {
+  "d": "bnrm.ma",
+  "c": "general",
+  "k": "مكتبة وطنية مملكة مغربية bibliothèque nationale royaume bnrm كتب مخطوطات ثقافة رباط"
+ },
+ {
+  "d": "cnt.ma",
+  "c": "general",
+  "k": "كونفدرالية وطنية سياحة confédération nationale tourisme cnt مهنيون سياحة فنادق اسفار"
+ },
+ {
+  "d": "aloula.ma",
+  "c": "general",
+  "k": "قناة الاولى al aoula snrt تلفزيون عمومي برامج اخبار مغربية"
+ },
+ {
+  "d": "arryadia.ma",
+  "c": "general",
+  "k": "قناة رياضية arryadia snrt رياضة كرة قدم بث مباشر مباريات"
+ },
+ {
+  "d": "albaridbank.ma",
+  "c": "business",
+  "k": "بريد بنك al barid bank banque postale حسابات قروض خدمات بنكية agences"
+ },
+ {
+  "d": "um6p.ma",
+  "c": "education",
+  "k": "جامعة محمد سادس متعددة تخصصات تقنية université mohammed vi polytechnique um6p بنجرير benguerir طلبة بحث"
+ }
+]
