@@ -185,14 +185,8 @@ def main(argv=None):
     print(f"discover: {len(files)} parquet files in partition "
           f"crawl={collection}/subset=warc")
 
-    con = duckdb.connect()
-    con.execute("INSTALL httpfs; LOAD httpfs;")
-    con.execute("SET http_retries = 5; SET http_timeout = 120;")
-    sql = build_query(collection, files, args.distilled_only, hosts,
-                      args.limit)
     print(f"discover: collection={collection} distilled_only="
           f"{args.distilled_only} hosts={len(hosts)}")
-    rel = con.execute(sql)
 
     os.makedirs(args.out_dir, exist_ok=True)
     chunk_ids, total, in_chunk = [], 0, 0
@@ -205,22 +199,68 @@ def main(argv=None):
                     "w", encoding="utf-8")
 
     fh = open_chunk()
-    while True:
-        rows = rel.fetchmany(1000)
-        if not rows:
+
+    def drain(rel):
+        nonlocal fh, total, in_chunk
+        while True:
+            rows = rel.fetchmany(1000)
+            if not rows:
+                break
+            for url, filename, offset, length, ts, host, regdom in rows:
+                rec = {"url": url, "filename": filename,
+                       "offset": int(offset), "length": int(length),
+                       "timestamp": ts or "", "host": host or "",
+                       "cat": cat_by_domain.get(regdom or "", "general")}
+                fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                total += 1
+                in_chunk += 1
+                if in_chunk >= args.chunk_size:
+                    fh.close()
+                    fh = open_chunk()
+                    in_chunk = 0
+
+    # Grouped execution with per-group retry: data.commoncrawl.org's
+    # edge sporadically answers 403 under parallel footer bursts
+    # (smoke run 41368441718 died on one file; the diag run proved the
+    # same file reads cleanly in isolation). DuckDB does not retry
+    # 403, so a group is retried whole on a fresh connection with
+    # backoff; a group that still fails is recorded in the manifest
+    # (failed_groups) and the run exits non-zero at the end — chunks
+    # from good groups are still produced and uploaded.
+    import time
+    GROUP = 25
+    failed_groups = []
+    groups = [files[i:i + GROUP] for i in range(0, len(files), GROUP)]
+    for gi, group in enumerate(groups):
+        if args.limit and total >= args.limit:
             break
-        for url, filename, offset, length, ts, host, regdom in rows:
-            rec = {"url": url, "filename": filename,
-                   "offset": int(offset), "length": int(length),
-                   "timestamp": ts or "", "host": host or "",
-                   "cat": cat_by_domain.get(regdom or "", "general")}
-            fh.write(json.dumps(rec, ensure_ascii=False) + "\n")
-            total += 1
-            in_chunk += 1
-            if in_chunk >= args.chunk_size:
-                fh.close()
-                fh = open_chunk()
-                in_chunk = 0
+        remaining = (args.limit - total) if args.limit else 0
+        sql = build_query(collection, group, args.distilled_only,
+                          hosts, remaining)
+        done = False
+        for attempt in range(4):
+            con = duckdb.connect()
+            try:
+                con.execute("INSTALL httpfs; LOAD httpfs;")
+                con.execute("SET http_retries = 5; "
+                            "SET http_timeout = 120;")
+                drain(con.execute(sql))
+                done = True
+                break
+            except Exception as e:
+                print(f"discover: group {gi} attempt {attempt + 1} "
+                      f"failed ({type(e).__name__}: {str(e)[:160]})")
+                if attempt < 3:
+                    time.sleep(10 * (3 ** attempt))
+            finally:
+                con.close()
+        if not done:
+            failed_groups.append(gi)
+            print(f"discover: group {gi} FAILED after 4 attempts "
+                  f"({len(group)} files skipped this run)")
+        else:
+            print(f"discover: group {gi}/{len(groups) - 1} ok, "
+                  f"total so far {total}")
     if fh:
         fh.close()
     if in_chunk == 0 and chunk_ids:  # drop trailing empty chunk
@@ -230,7 +270,8 @@ def main(argv=None):
             chunk_ids.pop()
     manifest = {"collection": collection, "chunk_size": args.chunk_size,
                 "total_captures": total, "chunks": chunk_ids,
-                "distilled_only": bool(args.distilled_only)}
+                "distilled_only": bool(args.distilled_only),
+                "failed_groups": failed_groups}
     with open(os.path.join(args.out_dir, "manifest.json"), "w",
               encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=1)
@@ -257,6 +298,10 @@ def main(argv=None):
             print(f"discover: chunks uploaded to HF dataset {repo}")
         except Exception as e:
             print(f"discover: HF upload failed ({type(e).__name__}: {e})")
+    if failed_groups:
+        print(f"discover: INCOMPLETE — failed groups {failed_groups}; "
+              f"manifest carries failed_groups for a patch run")
+        return 1
     return 0
 
 
