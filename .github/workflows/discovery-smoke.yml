@@ -1,0 +1,83 @@
+name: Discovery SMOKE — enumeration + read mechanics proof (<3 min)
+
+# Cheap proof harness for the Discovery redesign (2026-11-02): runs the
+# REAL pipeline/discover.py end-to-end — collinfo resolution, the
+# cc-index-table.paths.gz manifest enumeration, DuckDB read_parquet
+# over the explicit HTTPS file list, the production WHERE clause and
+# the production chunk writer — but capped at 25 captures from the
+# distilled host list, then asserts the chunk contract field-by-field.
+# Run this BEFORE re-dispatching the full Discovery workflow.
+# No HF env is set, so the (already optional) HF upload no-ops.
+
+on:
+  workflow_dispatch:
+    inputs:
+      collection:
+        description: "Common Crawl collection (or 'latest')"
+        required: false
+        default: "latest"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run discovery (distilled-only, limit 25)
+        run: |
+          python pipeline/discover.py \
+            --collection "${{ inputs.collection }}" \
+            --chunk-size 25 \
+            --out-dir chunks-smoke \
+            --limit 25 \
+            --distilled-only
+
+      - name: Assert the chunk contract
+        run: |
+          python - <<'EOF'
+          import json, os
+          m = json.load(open("chunks-smoke/manifest.json"))
+          assert m["collection"].startswith("CC-MAIN-"), m
+          total = m["total_captures"]
+          assert 0 < total <= 25, f"total_captures={total}"
+          assert m["chunks"], "no chunks emitted"
+          seen = 0
+          for cid in m["chunks"]:
+              path = f"chunks-smoke/chunk-{cid}.jsonl"
+              assert os.path.exists(path), path
+              for line in open(path, encoding="utf-8"):
+                  rec = json.loads(line)
+                  for k in ("url", "filename", "offset", "length",
+                            "timestamp", "host", "cat"):
+                      assert k in rec, f"missing key {k}: {rec}"
+                  assert isinstance(rec["offset"], int), rec
+                  assert isinstance(rec["length"], int), rec
+                  assert rec["filename"].startswith("crawl-data/"), rec
+                  assert rec["filename"].endswith(".warc.gz"), rec
+                  assert rec["url"].startswith("http"), rec
+                  assert rec["host"], rec
+                  assert len(rec["timestamp"]) == 14, rec
+                  seen += 1
+          assert seen == total, f"{seen} lines != total {total}"
+          print(f"SMOKE-PASS: {total} captures, contract OK, "
+                f"collection={m['collection']}")
+          EOF
+
+      - name: Publish smoke chunks as run artifact (eyeball only)
+        uses: actions/upload-artifact@v4
+        with:
+          name: chunks-smoke-${{ github.run_id }}
+          path: chunks-smoke/
+          retention-days: 3

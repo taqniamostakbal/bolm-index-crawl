@@ -4,7 +4,12 @@ list, and emit 5,000-capture work chunks for extract.py.
 
 Method (host-routes §4/§6, NO AWS/Athena): DuckDB reads the Common Crawl
 URL Index (Apache Parquet) over HTTPS from data.commoncrawl.org using
-httpfs range reads, filters to Moroccan hosts, and writes chunk files:
+httpfs range reads, filters to Moroccan hosts, and writes chunk files.
+The partition's parquet files are enumerated from Common Crawl's own
+per-crawl manifest, crawl-data/<COLL>/cc-index-table.paths.gz — HTTP
+globs are rejected by DuckDB's httpfs and the bucket denies anonymous
+listing, so an explicit file list is the only credential-free route
+(the same one DuckDB's MotherDuck guide documents for this index).
 
   chunks/chunk-00000.jsonl   {"url","filename","offset","length",
                               "timestamp","host","cat"}
@@ -26,16 +31,61 @@ Usage:
       [--distilled-only] [--limit 0]
 """
 import argparse
+import gzip
 import json
 import os
 import sys
+import time
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import common  # noqa: E402
 
-CC_INDEX_BASE = "https://data.commoncrawl.org/cc-index/table/cc-main/warc"
+CC_DATA = "https://data.commoncrawl.org"
 COLLINFO = "https://index.commoncrawl.org/collinfo.json"
+INDEX_PATHS = CC_DATA + "/crawl-data/{collection}/cc-index-table.paths.gz"
+UA = {"User-Agent": "BolmIndexCrawl/1.0 "
+        "(+https://github.com/taqniamostakbal/bolm-index-crawl)"}
+
+
+def fetch_index_files(collection, subset="warc"):
+    """Explicit parquet URL list for one (collection, subset) partition.
+
+    Enumeration source = Common Crawl's per-crawl manifest
+    `crawl-data/<COLL>/cc-index-table.paths.gz`: one relative path per
+    line for every columnar-index part of that crawl (900 lines for
+    CC-MAIN-2026-43 = 300 parts x subsets warc/crawldiagnostics/
+    robotstxt; verified live 2026-11-02, first warc part answers HTTP
+    range GETs). Part names embed a per-write-job UUID, so the manifest
+    is the only enumeration — DuckDB/httpfs rejects `*` globs on
+    generic HTTP URLs (Discovery run 41356228876) and the bucket
+    denies anonymous S3 listing (AccessDenied on all endpoints).
+    """
+    url = INDEX_PATHS.format(collection=collection)
+    text, last = None, None
+    for attempt in range(4):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                text = gzip.decompress(resp.read()).decode("utf-8")
+            break
+        except Exception as e:  # CC rate-limits with 503s; back off
+            last = e
+            if attempt < 3:
+                time.sleep(2 * (attempt + 1))
+    if text is None:
+        raise RuntimeError(f"could not fetch index manifest {url}: "
+                           f"{type(last).__name__}: {last}")
+    files = [CC_DATA + "/" + line.strip()
+             for line in text.splitlines()
+             if f"/crawl={collection}/" in line
+             and f"/subset={subset}/" in line
+             and line.strip().endswith(".parquet")]
+    if not files:
+        raise RuntimeError(
+            f"manifest {url} lists no subset={subset} parquet files "
+            f"for crawl={collection}")
+    return sorted(files)
 
 
 def resolve_collection(collection):
@@ -66,15 +116,21 @@ def load_host_list(registry_path, extra_hosts_path):
     return hosts
 
 
-def build_query(collection, distilled_only, hosts, limit):
+def build_query(collection, files, distilled_only, hosts, limit):
     """DuckDB SQL over the URL-index parquet (HTTPS, hive-partitioned).
 
     Column names follow the published CC URL Index schema:
     url, url_host_name, url_host_registered_domain, url_host_tld,
     warc_filename, warc_record_offset, warc_record_length,
     fetch_time, fetch_status, content_mime_detected.
+
+    `files` is the explicit parquet URL list from fetch_index_files()
+    (the crawl's cc-index-table.paths.gz manifest; glob patterns are
+    not supported over generic HTTP in httpfs, and anonymous bucket
+    listing is denied).
     """
-    glob = f"{CC_INDEX_BASE}/crawl={collection}/subset=warc/*.parquet"
+    file_list = ", ".join("'" + u.replace("'", "''") + "'"
+                          for u in files)
     where = ["fetch_status = 200",
              "(content_mime_detected IS NULL OR "
              "content_mime_detected LIKE 'text/html%')"]
@@ -93,7 +149,7 @@ def build_query(collection, distilled_only, hosts, limit):
                CAST(fetch_time AS VARCHAR) AS timestamp,
                url_host_name       AS host,
                url_host_registered_domain AS registered_domain
-        FROM read_parquet('{glob}', hive_partitioning = true)
+        FROM read_parquet([{file_list}], hive_partitioning = true)
         WHERE {' AND '.join(where)}
         {lim}
     """
@@ -125,11 +181,15 @@ def main(argv=None):
     collection = resolve_collection(args.collection)
     hosts = load_host_list(args.registry, args.extra_hosts)
     cat_by_domain = dict(hosts)
+    files = fetch_index_files(collection)
+    print(f"discover: {len(files)} parquet files in partition "
+          f"crawl={collection}/subset=warc")
 
     con = duckdb.connect()
     con.execute("INSTALL httpfs; LOAD httpfs;")
     con.execute("SET http_retries = 5; SET http_timeout = 120;")
-    sql = build_query(collection, args.distilled_only, hosts, args.limit)
+    sql = build_query(collection, files, args.distilled_only, hosts,
+                      args.limit)
     print(f"discover: collection={collection} distilled_only="
           f"{args.distilled_only} hosts={len(hosts)}")
     rel = con.execute(sql)
