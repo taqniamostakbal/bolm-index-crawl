@@ -146,7 +146,7 @@ def build_query(collection, files, distilled_only, hosts, limit):
                warc_filename       AS filename,
                warc_record_offset  AS "offset",
                warc_record_length  AS length,
-               CAST(fetch_time AS VARCHAR) AS timestamp,
+               strftime(fetch_time, '%Y%m%d%H%M%S') AS timestamp,
                url_host_name       AS host,
                url_host_registered_domain AS registered_domain
         FROM read_parquet([{file_list}], hive_partitioning = true)
