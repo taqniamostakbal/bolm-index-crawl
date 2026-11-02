@@ -227,6 +227,16 @@ def main(argv=None):
     # backoff; a group that still fails is recorded in the manifest
     # (failed_groups) and the run exits non-zero at the end — chunks
     # from good groups are still produced and uploaded.
+    #
+    # Smoke run 41368844928 still lost groups 2 and 3: every attempt
+    # died on the group's FIRST file — the burst itself (DuckDB's
+    # parallel footer reads across 25 files on a fresh connection)
+    # re-triggered the throttle each time, and 10/30/90 s of backoff
+    # was shorter than the throttle window. The files are provably
+    # fine in isolation (HTTP 206 range reads). Fix: shrink the burst
+    # (threads = 2), let httpfs ride out short windows per GET
+    # (retry wait/backoff), and give a group up to 5 attempts with
+    # 20/40/80/160 s backoff.
     import time
     GROUP = 25
     failed_groups = []
@@ -234,29 +244,38 @@ def main(argv=None):
     for gi, group in enumerate(groups):
         if args.limit and total >= args.limit:
             break
+        if gi:
+            time.sleep(2)  # courtesy pause between groups
         remaining = (args.limit - total) if args.limit else 0
         sql = build_query(collection, group, args.distilled_only,
                           hosts, remaining)
         done = False
-        for attempt in range(4):
+        for attempt in range(5):
             con = duckdb.connect()
             try:
                 con.execute("INSTALL httpfs; LOAD httpfs;")
-                con.execute("SET http_retries = 5; "
-                            "SET http_timeout = 120;")
+                con.execute("SET threads = 2;")
+                for stmt in ("SET http_retries = 5;",
+                             "SET http_timeout = 120;",
+                             "SET http_retry_wait_ms = 1000;",
+                             "SET http_retry_backoff = 2;"):
+                    try:
+                        con.execute(stmt)
+                    except Exception:
+                        pass  # a settings name must never kill a group
                 drain(con.execute(sql))
                 done = True
                 break
             except Exception as e:
                 print(f"discover: group {gi} attempt {attempt + 1} "
                       f"failed ({type(e).__name__}: {str(e)[:160]})")
-                if attempt < 3:
-                    time.sleep(10 * (3 ** attempt))
+                if attempt < 4:
+                    time.sleep(min(180, 20 * (2 ** attempt)))
             finally:
                 con.close()
         if not done:
             failed_groups.append(gi)
-            print(f"discover: group {gi} FAILED after 4 attempts "
+            print(f"discover: group {gi} FAILED after 5 attempts "
                   f"({len(group)} files skipped this run)")
         else:
             print(f"discover: group {gi}/{len(groups) - 1} ok, "
